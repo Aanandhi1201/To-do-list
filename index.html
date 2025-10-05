@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do-list</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="task-container">
+        <h2>To-do-list</h2>
+        <div class="task-box">
+
+            
+            <div class="input-box">
+                <input type="text" id="taskInput" placeholder="Enter new task">
+                <button onclick="addTask()">Add</button>
+                <p id="errorMsg" class="error"></p>
+            </div>
+
+            <ul id="taskList" class="tasks">
+                <li><P class="task">Read books</P> <button class="del-btn" onclick="deleteTask(this)">Delete</button></li>
+                <li><P class="task">Check mails</P> <button class="del-btn" onclick="deleteTask(this)">Delete</button></li>
+                <li><P class="task">Buy groceries</P> <button class="del-btn" onclick="deleteTask(this)">Delete</button></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function addTask(){
+        //get value//
+        const input = document.getElementById("taskInput");
+        const taskList = document.getElementById("taskList");
+
+        //clear old error msg//
+        document.getElementById("errorMsg").textContent="";
+
+        //validate input//
+        if(taskInput.value === ""){
+            document.getElementById("errorMsg").textContent = "*Please enter a task";
+        }
+        else{
+            const li = document.createElement("li");
+            li.innerHTML = `<p class ="task">${taskInput.value}</p> <button class="del-btn" onclick="deleteTask(this)">Delete</button>`;
+        
+        //Add to the list//
+        taskList.appendChild(li);
+
+        input.value = "";
+        }
+    }
+    function deleteTask(button){
+        button.parentElement.remove();
+    }
+
+    </script>
+</body>
+
+</html>
